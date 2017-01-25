@@ -1,6 +1,6 @@
 /**
  * Class representing a validation rule.
- * 
+ *
  * @autor Dragos Sebestin
  */
 export class Rule <ObjectType, FieldType> {
@@ -49,6 +49,29 @@ export class Rule <ObjectType, FieldType> {
     this._validations.push(field => {
       if (field !== value)
         throw `${this._for} field must be equal to ${value}.`;
+    });
+    return this;
+  }
+
+  length (min: number, max?: number) : Rule<ObjectType, FieldType> {
+    this._validations.push(field => {
+      let fieldString = (field || '').toString();
+      if (fieldString.length < min)
+        throw `${this._for}'s length must be at least ${min}.`;
+
+      if (max && fieldString.length > max)
+        throw `${this._for}'s length must not exceed ${max}.`;
+    });
+    return this;
+  }
+
+  isEmail () : Rule<ObjectType, FieldType> {
+    /* tslint:disable */
+    const emailRx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    /* tslint:enable */
+    this._validations.push(field => {
+      if (!emailRx.test(field.toString()))
+        throw `${field} is not a valid email address.`;
     });
     return this;
   }
