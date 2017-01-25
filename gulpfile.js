@@ -29,7 +29,9 @@ gulp.task('tslint', () => {
 });
 
 gulp.task('compile', () => {
-  let ts = typescript.createProject('tsconfig.json');
+  let ts = typescript.createProject('tsconfig.json', {
+    declaration: true
+  });
   return gulp.src([
     'src/**/*.ts'
   ])
