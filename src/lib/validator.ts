@@ -2,7 +2,7 @@ import {Rule} from './rule';
 
 /**
  * Class used for validating input objects.
- * 
+ *
  * @author Dragos Sebestin
  */
 export class ValidatR <ObjectType> {
