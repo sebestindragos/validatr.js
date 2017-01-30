@@ -103,4 +103,28 @@ export class Rule <ObjectType, FieldType> {
     });
     return this;
   }
+
+  min (value: number) : Rule<ObjectType, FieldType> {
+    this._validations.push({
+      tester: field => {
+        if (typeof field !== 'number')
+          throw `${this._for} must be a number.`;
+        if (field < value)
+          throw `${field} must be at least ${value}.`;
+      }
+    });
+    return this;
+  }
+
+  max (value: number) : Rule<ObjectType, FieldType> {
+    this._validations.push({
+      tester: field => {
+        if (typeof field !== 'number')
+          throw `${this._for} must be a number.`;
+        if (field > value)
+          throw `${field} cannot exceed ${value}.`;
+      }
+    });
+    return this;
+  }
 }
