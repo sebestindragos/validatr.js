@@ -21,6 +21,13 @@ export class ValidationResult {
   }
 
   /**
+   * Get object with field errors.
+   */
+  getErrors () : Object {
+    return this._errorFields;
+  }
+
+  /**
    * Check if the validation result has errors.
    */
   isValid () : boolean {
