@@ -1,8 +1,9 @@
 import {Rule} from './rule';
+import {ValidationResult} from './validationResult';
 
 /**
  * Class used for validating input objects.
- * 
+ *
  * @author Dragos Sebestin
  */
 export class ValidatR <ObjectType> {
@@ -25,14 +26,14 @@ export class ValidatR <ObjectType> {
   /**
    * Run all defined rules and return the result.
    */
-  run (value: ObjectType) {
-    let errors = [];
+  run (value: ObjectType) : ValidationResult {
+    let result = new ValidationResult();
     this._rules.forEach(rule => {
       let ruleErrors = rule.exec(value);
       if (ruleErrors.length > 0)
-        errors = errors.concat(ruleErrors);
+        result.addError(ruleErrors[0].fieldName, ruleErrors[0].message);
     });
 
-    return errors;
+    return result;
   }
 }

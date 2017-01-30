@@ -26,7 +26,7 @@ describe('Rule class', () => {
       let rule = new Rule<number, number>('email', x => x);
       rule.notEmpty();
       let errors = rule.exec(0);
-      
+
       expect(errors.length).to.be.eq(0);
     });
 
@@ -163,5 +163,28 @@ describe('Rule class', () => {
       errors = rule.exec({email: 'asd'});
       expect(errors.length).to.be.gt(0);
     });
+  });
+
+  describe('#with()', () => {
+    it('should override the message of a validation', () => {
+      let rule = new Rule<string, string>('email', x => x);
+      let msg = 'this email is not valid.';
+      rule.isEmail().with(msg);
+
+      let errors = rule.exec('me');
+      expect(errors[0].message).to.be.eq(msg);
+    });
+    it('should override the message of individual validations', () => {
+      let rule = new Rule<string, string>('email', x => x);
+      let msg1 = 'this email cannot be used because it will burn the servers.';
+      rule.notEqual('satan@666.com').with(msg1);
+      let msg2 = 'this is not a valid email address for our site.';
+      rule.isEmail().with(msg2);
+
+      let errors = rule.exec('satan@666.com');
+      expect(errors[0].message).to.be.eq(msg1);
+      errors = rule.exec('me');
+      expect(errors[0].message).to.be.eq(msg2);
+    })
   });
 });
