@@ -2,7 +2,6 @@
 
 const gulp = require('gulp');
 const typescript = require('gulp-typescript');
-const sourcemaps = require('gulp-sourcemaps');
 const rm = require('gulp-rimraf');
 const tslint = require('gulp-tslint');
 const runSequence = require('run-sequence');
@@ -35,13 +34,7 @@ gulp.task('compile', () => {
   return gulp.src([
     'src/**/*.ts'
   ])
-  .pipe(sourcemaps.init())
   .pipe(ts())
-  .pipe(sourcemaps.write('.', {
-    sourceRoot: (file) => {
-      return file.cwd + '/src'
-    }
-  }))
   .pipe(gulp.dest('build/'));
 });
 
