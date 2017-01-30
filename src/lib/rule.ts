@@ -38,10 +38,11 @@ export class Rule <ObjectType, FieldType> {
   /**
    * Override the default message of the last validation added.
    */
-  with (message: string) {
+  with (message: string) : Rule<ObjectType, FieldType> {
     if (this._validations.length > 0) {
       this._validations[this._validations.length - 1].message = message;
     }
+    return this;
   }
 
   // validations
