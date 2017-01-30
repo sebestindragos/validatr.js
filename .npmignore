@@ -1,5 +1,5 @@
 src/
-src/tests/
+build/tests
 gulpfile.js
 tsconfig.json
 tslint.json
