@@ -128,4 +128,13 @@ export class Rule <ObjectType, FieldType> {
     });
     return this;
   }
+
+  must (predicate: {(field: FieldType) : void}) : Rule<ObjectType, FieldType> {
+    this._validations.push({
+      tester: field => {
+        predicate(field);
+      }
+    });
+    return this;
+  }
 }
