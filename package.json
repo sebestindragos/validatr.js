@@ -1,5 +1,5 @@
 {
-  "name": "validatr",
+  "name": "validatr.js",
   "version": "1.0.0",
   "description": "Javascript validation library",
   "main": "./build/main.js",
@@ -13,7 +13,9 @@
   },
   "keywords": [
     "javascript",
-    "validation"
+    "typescript",
+    "validation",
+    "validator"
   ],
   "author": "Dragos Sebestin",
   "license": "MIT",
