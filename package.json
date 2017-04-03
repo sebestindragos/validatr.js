@@ -1,6 +1,6 @@
 {
   "name": "validatr.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Javascript validation library",
   "main": "./build/main.js",
   "typings": "./build/main.d.ts",
