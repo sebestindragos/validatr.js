@@ -2,7 +2,7 @@
 
 JavaScript validation library for NodeJS.
 
-***validar.js*** is written in TypeScript and compiled with ES6 target.
+***validatr.js*** is written in TypeScript and compiled with ES6 target.
 
 Usage in TypeScript projects is highly recommended since the library uses templates for smart intelisense.
 
